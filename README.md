@@ -5,7 +5,11 @@ Event-driven WebSocket wrapper for Deno, utilizing the deno-std ws module.
 ## Usage
 
 ```ts
-import WS from "https://raw.githubusercontent.com/envis10n/deno-ws/master/mod.ts";
+import { EventEmitter } from "https://raw.githubusercontent.com/envis10n/deno-ws/0.1.0/mod.ts";
 ```
+
+Where `0.1.0` is a valid release tag or branch.
+
+Note: It's not recommended to rely on `master` branch as this will be the latest, possibly breaking, changes to the module.
 
 Check `examples` folder for example files.
