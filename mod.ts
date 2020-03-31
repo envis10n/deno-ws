@@ -8,7 +8,7 @@ import {
   WebSocket
 } from "https://deno.land/std/ws/mod.ts";
 import { v4 } from "https://deno.land/std/uuid/mod.ts";
-import { EventEmitter } from "https://raw.githubusercontent.com/envis10n/deno-events/master/mod.ts";
+import { EventEmitter } from "https://raw.githubusercontent.com/envis10n/deno-events/0.1.0/mod.ts";
 
 interface IWServerEvents {
   connection(socket: WS): boolean | undefined;
