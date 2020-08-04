@@ -1,4 +1,4 @@
-import { serve } from "https://deno.land/std/http/server.ts";
+import { serve } from "https://deno.land/std@0.63.0/http/server.ts";
 import {
   acceptWebSocket,
   connectWebSocket,
@@ -6,8 +6,8 @@ import {
   isWebSocketPingEvent,
   isWebSocketPongEvent,
   WebSocket
-} from "https://deno.land/std/ws/mod.ts";
-import { v4 } from "https://deno.land/std/uuid/mod.ts";
+} from "https://deno.land/std@0.63.0/ws/mod.ts";
+import { v4 } from "https://deno.land/std@0.63.0/uuid/mod.ts";
 import { EventEmitter } from "https://deno.land/x/deno_events@0.1.1/mod.ts";
 
 interface IWServerEvents {
@@ -61,15 +61,9 @@ class WS extends EventEmitter<IWSocketEvents> {
     }
   }
   private async run(socket: WebSocket): Promise<void> {
-    const it = socket.receive();
     this.emit("open");
-    while (true) {
+    for await (const ev of socket) {
       try {
-        const { done, value } = await it.next();
-        if (done) {
-          break;
-        }
-        const ev = value;
         if (typeof ev === "string") {
           this.emit("message", ev);
         } else if (ev instanceof Uint8Array) {
